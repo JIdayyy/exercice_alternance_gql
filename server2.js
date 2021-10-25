@@ -61,7 +61,7 @@ var coursesData = [
 ];
 
 var addCourse = function (args) {
-  var id = 4;
+  var id = coursesData.length + 1;
   const data = args.input;
   const body = { id, ...data };
   coursesData.push(body);
