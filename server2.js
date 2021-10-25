@@ -62,10 +62,8 @@ var coursesData = [
 
 var addCourse = function (args) {
   var id = coursesData.length + 1;
-  const data = args.input;
-  const body = { id, ...data };
+  const body = { id, ...args.input };
   coursesData.push(body);
-  console.log(coursesData);
   return coursesData;
 };
 
