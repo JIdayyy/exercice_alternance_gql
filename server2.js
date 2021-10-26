@@ -13,7 +13,7 @@ var schema = buildSchema(`
     type Query {
         course(id: Int!): Course
         courses(topic: String): [Course]
-     
+        coursesByTitle(title: String): [Course]
     },
     type Mutation {
         updateCourseTopic(id: Int!, topic: String!): Course
@@ -78,15 +78,21 @@ var getCourses = function (args) {
   if (args.topic) {
     var topic = args.topic;
     return coursesData.filter((course) => course.topic === topic);
-  } else {
-    return coursesData;
   }
+};
+
+var getCoursesByTitle = function (args) {
+  var title = args.title;
+  return coursesData.filter((course) => {
+    return course.title.toLowerCase().includes(title.toLowerCase());
+  });
 };
 
 var root = {
   course: getCourse,
   courses: getCourses,
   addCourse: addCourse,
+  coursesByTitle: getCoursesByTitle,
 };
 
 // Create an express server and a GraphQL endpoint
